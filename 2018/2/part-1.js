@@ -1,15 +1,15 @@
-module.exports = ids => {
+module.exports = input => {
   let two = 0, three = 0
 
-  const hasRepeatedChars = (string, occurences) => {
-    return Object.values(string.split('').reduce((acc, char) => {
+  const hasRepeatedChars = (entry, occurences) => {
+    return Object.values(entry.reduce((acc, char) => {
       return (acc[char] = (acc[char] || 0) + 1, acc)
     }, {})).includes(occurences)
   }
 
-  ids.forEach(string => {
-    hasRepeatedChars(string, 2) && two++
-    hasRepeatedChars(string, 3) && three++
+  input.trim().split('\n').map(id => id.split('')).forEach(entry => {
+    hasRepeatedChars(entry, 2) && two++
+    hasRepeatedChars(entry, 3) && three++
   })
 
   return two * three
