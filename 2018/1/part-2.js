@@ -1,4 +1,5 @@
-module.exports = nums => {
+module.exports = input => {
+  const nums = input.trim().split('\n').map(v => parseInt(v, 10))
   const seen = new Set([0])
   let index = 0, sum = 0
 
