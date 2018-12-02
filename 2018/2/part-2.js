@@ -1,14 +1,15 @@
 module.exports = input => {
-  const arr = input.trim().split('\n').map(id => id.split(''))
+  const ids = input.trim().split('\n')
+  let matches, a
 
-  const isMatch = (a, b) => a
-    .map((char, i) => char === b[i])
-    .filter(match => match === false).length === 1
+  const findMatches = (a, b) => a.filter((char, i) => char === b[i])
+    
+  for (let i = 0, l = ids.length; i < l; i++) {
+    for (let j = i + 1; j < l; j++) {
+      matches = findMatches(a = ids[i].split(''), ids[j].split(''))
 
-  for (let i = 0, l = arr.length; i < l; i++) {
-    for (let j = 0; j < l; j++) {
-      if (isMatch(arr[i], arr[j])) {
-        return arr[i].filter((char, i) => char === arr[j][i]).join('')
+      if (matches.length === a.length - 1) {
+        return matches.join('')
       }
     }
   }

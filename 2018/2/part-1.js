@@ -1,16 +1,15 @@
 module.exports = input => {
+  const ids = input.trim().split('\n')
   let two = 0, three = 0
 
-  const hasRepeatedChars = (entry, occurences) => {
-    return Object.values(entry.reduce((acc, char) => {
-      return (acc[char] = (acc[char] || 0) + 1, acc)
-    }, {})).includes(occurences)
-  }
+  for (let i = 0, l = ids.length; i < l; i++) {
+    const counts = Object.values(
+      ids[i].split('').reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {})
+    )
 
-  input.trim().split('\n').map(id => id.split('')).forEach(entry => {
-    hasRepeatedChars(entry, 2) && two++
-    hasRepeatedChars(entry, 3) && three++
-  })
+    counts.includes(2) && two++
+    counts.includes(3) && three++
+  }
 
   return two * three
 }
