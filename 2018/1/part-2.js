@@ -1,10 +1,11 @@
-const run = (value, nums, seen = new Set([value])) => {
-  for (const num of nums) {
-    if (seen.has(value += num)) return value
-    seen.add(value)
+module.exports = nums => {
+  const seen = new Set([0])
+  let index = 0, sum = 0
+
+  while (true) {
+    if (seen.has(sum += nums[index])) return sum
+    else seen.add(sum)
+    
+    index = (index + 1) % nums.length
   }
-
-  return run(value, nums, seen)
 }
-
-module.exports = run
