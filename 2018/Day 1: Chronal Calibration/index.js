@@ -12,10 +12,12 @@ function part2 () {
   let index = 0, sum = 0, l = nums.length
 
   while ((sum += nums[index]) || true) {
-    if (seen.has(sum)) return sum
-    else seen.add(sum)
     index = (index + 1) % l
+    if (seen.has(sum)) break
+    else seen.add(sum)
   }
+
+  return sum
 }
 
 console.log('part 2:', part2()) // 341
