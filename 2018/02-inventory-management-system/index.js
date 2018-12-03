@@ -1,14 +1,11 @@
 const input = require('fs').readFileSync('input.txt', 'utf8')
-const ids = input.trim().split('\n')
+const ids = input.trim().split('\n').map(v => v.split(''))
 
 function part1 () {
-  let two = 0, three = 0
+  let i = 0, l = ids.length, two = 0, three = 0, counts
 
-  for (let i = 0, l = ids.length; i < l; i++) {
-    const counts = Object.values(
-      ids[i].split('').reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {})
-    )
-
+  for (i; i < l; i++) {
+    counts = Object.values(ids[i].reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), {}))
     counts.includes(2) && two++
     counts.includes(3) && three++
   }
@@ -19,19 +16,12 @@ function part1 () {
 console.log('part 1:', part1()) // 5390
 
 function part2 () {
-  let matches, a
+  let i = 0, l = ids.length, j, diff
 
-  const findMatches = (a, b) => a.filter((char, i) => char === b[i])
-    
-  for (let i = 0, l = ids.length; i < l; i++) {
-    for (let j = i + 1; j < l; j++) {
-      matches = findMatches(a = ids[i].split(''), ids[j].split(''))
-
-      if (matches.length === a.length - 1) {
-        return matches.join('')
-      }
-    }
-  }
+  for (i; i < l; i++)
+    for (j = i + 1; j < l; j++)
+      if ((diff = ids[i].filter((c, i) => c === ids[j][i])).length === ids[i].length - 1)
+        return diff.join('')
 }
 
 console.log('part 2:', part2()) // nvosmkcdtdbfhyxsphzgraljq
