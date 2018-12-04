@@ -1,25 +1,28 @@
 const lines = require('fs').readFileSync('input.txt', 'utf8').trim().split('\n')
-const claims = lines.map(v => v.match(/\d+/g).map(v => parseInt(v, 10)))
-const grid = Array.from({ length: 1000 }, v => Array.from({ length: 1000 }, v => new Map()))
-
-claims.forEach(([ id, x, y, w, h ]) => {
-  for (let i = x, l = x + w; i < l; i++)
-    for (let j = y, k = y + h; j < k; j++)
-      grid[i][j].set(id, 1)
-})
+const claims = lines.map(v => v.match(/\d+/g).map(v => +v))
 
 function part1 () {
-  return grid.reduce((n, r) => n + r.filter(c => c.size > 1).length, 0)
+  const map = []
+
+  for (const [ id, x, y, w, h ] of claims)
+    for (let i = x, l = x + w; i < l; i++)
+      for (let j = y, k = y + h; j < k; j++)
+        map[i] = map[i] || [],
+        map[i][j] = map[i][j] || new Map(),
+        map[i][j].set(id, 1)
+
+  return map.reduce((n, r) => n + r.filter(c => c.size > 1).length, 0)
 }
 
 console.log('part 1:', part1()) // 113716
 
 function part2 () {
-  const collides = grid.reduce((acc, r) => {
-    return (r.forEach(c => c.size > 1 && acc.push(...c.keys())), acc)
-  }, [])
-
-  return claims.filter(([ id ]) => !collides.includes(id)).shift().shift()
+  return claims.find(([ id1, x1, y1, w1, h1 ]) =>
+    claims.every(([ id2, x2, y2, w2, h2 ]) => (
+      x1 + w1 - 1 < x2 || x1 > x2 + w2 - 1 ||
+      y1 + h1 - 1 < y2 || y1 > y2 + h2 - 1 ||
+      id1 === id2
+    ))).shift()
 }
 
 console.log('part 2:', part2()) // 742
