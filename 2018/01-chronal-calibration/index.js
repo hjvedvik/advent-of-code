@@ -13,7 +13,7 @@ function part2 () {
 
   while (sum += nums[index = (index + 1) % length] || true) {
     if (seen.has(sum)) return sum
-    else seen.add(sum)
+    seen.add(sum)
   }
 }
 

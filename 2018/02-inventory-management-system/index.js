@@ -2,13 +2,15 @@ const input = require('fs').readFileSync('input.txt', 'utf8')
 const ids = input.trim().split('\n').map(v => v.split(''))
 
 function part1 () {
-  return ids.reduce(([ two, three, has2 = 0, has3 = 0 ], line) => {
-    for (const c1 of line)
-      has2 = !has2 ? line.filter(c2 => c2 === c1).length === 2 : 1,
-      has3 = !has3 ? line.filter(c2 => c2 === c1).length === 3 : 1
-    
-    return [ two + has2, three + has3 ]
-  }, [ 0, 0 ]).reduce((a, b) => a *= b, 1)
+  return ids
+    .reduce(([ two, three, has2 = 0, has3 = 0 ], line) => {
+      for (const c1 of line)
+        has2 = !has2 ? line.filter(c2 => c2 === c1).length === 2 : 1,
+        has3 = !has3 ? line.filter(c2 => c2 === c1).length === 3 : 1
+      
+      return [ two + has2, three + has3 ]
+    }, [ 0, 0 ])
+    .reduce((a, b) => a *= b, 1)
 }
 
 console.log('part 1:', part1()) // 5390
