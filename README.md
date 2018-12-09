@@ -7,3 +7,4 @@
 - [Day 3: No Matter How You Slice It](2018/03-no-matter-how-you-slice-it)
 - [Day 4: Repose Record](2018/04-repose-record)
 - [Day 5: Alchemical Reduction](2018/05-alchemical-reduction)
+- [Day 6: Chronal Coordinates](2018/06-chronal-coordinates)
