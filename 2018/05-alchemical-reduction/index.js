@@ -27,4 +27,4 @@ function part2 () {
     .shift()
 }
 
-console.log('part 2:', part2()) // 5094
+console.log('part 2:', part2()) // 5094 ~80ms

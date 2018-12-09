@@ -8,14 +8,9 @@ let i, n, guard, sleeping
 for (const [ raw, msg ] of records) {
   n = +raw.match(/\d+/g).pop()
 
-  if (msg === 'begins shift')
-    guard = index[n] = (index[n] || { id: n, ms: [...ms] })
-  
-  if (msg === 'wakes up')
-    for (i = sleeping; i < n; i++) guard.ms[i]++
-  
-  if (msg === 'falls asleep')
-    sleeping = n
+  if (msg === 'begins shift') guard = index[n] = (index[n] || { id: n, ms: [...ms] })
+  if (msg === 'wakes up') for (i = sleeping; i < n; i++) guard.ms[i]++
+  if (msg === 'falls asleep') sleeping = n
 }
 
 function part1 () {
