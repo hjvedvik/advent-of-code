@@ -13,3 +13,4 @@
 - [Day 9: Marble Mania](2018/09-marble-mania)
 - [Day 10: The Stars Align](2018/10-the-stars-align)
 - [Day 11: Chronal Charge](2018/11-chronal-charge)
+- [Day 12: Subterranean Sustainability](2018/12-subterranean-sustainability)
