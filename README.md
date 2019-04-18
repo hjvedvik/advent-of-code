@@ -9,3 +9,4 @@
 - [Day 5: Alchemical Reduction](2018/05-alchemical-reduction)
 - [Day 6: Chronal Coordinates](2018/06-chronal-coordinates)
 - [Day 7: The Sum of Its Parts](2018/07-the-sum-of-its-parts)
+- [Day 8: Memory Maneuver](2018/08-memory-maneuver)
